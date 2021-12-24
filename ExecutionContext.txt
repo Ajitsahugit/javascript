@@ -1,72 +1,46 @@
-package com.ss.tweetpost;
-
-import androidx.appcompat.app.AppCompatActivity;
-import android.app.ProgressDialog;
-import android.os.Bundle;
-import android.view.View;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.widget.Toast;
+https://medium.com/@happymishra66/execution-context-in-javascript-319dd72e8e2c
 
 
-public class MainActivity extends AppCompatActivity {
-    private WebView web;
-    String webUrl = "https://trickssoftware.com/AIOD/vimeo-video-downloader";
-    private ProgressDialog pd;
+javascript is synchronuous single thread language
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+Everything in javascript happen inside Global Execution Concept 
+Execution Context have 2 component
+1.
 
-        web = (WebView) findViewById(R.id.myweb);
-        web.loadUrl(webUrl);
-
-        WebSettings mywebsettings = web.getSettings();
-        mywebsettings.setJavaScriptEnabled(true);
-
-        web.setWebViewClient(new WebViewClient());
-
-        //progress alert
-
-        pd = new ProgressDialog(MainActivity.this);
-        pd.setMessage("Loading Please Wait....");
-        web.setWebViewClient(new mbfllixer(pd));
-        pd.setCanceledOnTouchOutside(false);
-
-
-    }
-    public class mbfllixer extends WebViewClient {
-
-        ProgressDialog pd;
-        public mbfllixer(ProgressDialog pd){
-
-            this.pd=pd;
-            pd.show();
-        }
-
-        @Override
-        public void onPageFinished(WebView view, String url) {
-            super.onPageFinished(view, url);
-            if (pd.isShowing()){
-
-                pd.dismiss();
-            }
-        }
-
-    }
-
-
-    @Override
-    public void onBackPressed() {
-        if(web.canGoBack()){
-
-            web.goBack();
-        }
-        else {
-
-            super.onBackPressed();
-        }
-    }
+Memory component(Variable Context)=>{
+in this block variable are store in key value pair (a:10)
+and function are store as it is in code 
 }
+
+2.
+
+ code Component =>{
+ in side this block code are executed line by line it is also known as thread of exection 
+ Here code is executed line by line in thread
+}
+
+ only one global environment is possible for JS code execution as the JS engine is single threaded
+
+Functional execution context=>{
+it created when a function call
+each function has own Exection Context
+function exection context more than one 
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
